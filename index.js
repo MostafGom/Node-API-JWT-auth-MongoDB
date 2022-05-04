@@ -3,6 +3,7 @@ const morgan = require('morgan');
 require('dotenv').config({ path: './config/config.env' });
 const createError = require('http-errors')
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 require('./config/init_mongodb');
 
 
@@ -23,6 +24,11 @@ if (process.env.NODE_ENV === 'development') {
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(fileUpload({
+    limits: { fileSize: 2 * 1024 * 1024 },
+    abortOnLimit: true
+}));
 
 app.use('/api/auth', authRoutes)
 app.use('/products', productRoutes)

@@ -1,5 +1,54 @@
-GET http://localhost:5000/products
-Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjVmMDM1MGM2NTJiYzE1Njk2NDM4ODciLCJpYXQiOjE2NTA0ODExMTEsImV4cCI6MTY1MDQ4MTEzMX0.0Y_TnhRjD3pq39GfmQlXzaoopPQVLZy7RjhLS9Fbp3w
+
+GET http://localhost:5000/products/all-no-image
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
+
+###
+GET http://localhost:5000/products/all
+Authorization: BEARER eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.
 
 ###
 
+POST http://localhost:5000/image-test
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+produc#3
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="large.png"
+Content-Type: image/jpg
+
+< ./large.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+###
+
+POST http://localhost:5000/products/add
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="name"
+
+produc#3
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="user"
+
+625db11946abad8efaec28a8
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="desc"
+
+desc#3 product#3
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="qty"
+
+478
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="price"
+
+685
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="1.png"
+Content-Type: image/jpg
+
+< ./1.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
