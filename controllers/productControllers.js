@@ -1,4 +1,4 @@
-const Product = require('../models/product');
+const Product = require('../models/Product');
 const { productCreateValidation } = require('../validation');
 const MAX_FILE_SIZE = 2 * 1024 * 1024;
 

@@ -10,6 +10,7 @@ require('./config/init_mongodb');
 // Import Routes
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/product');
+const orderRoutes = require('./routes/order');
 
 
 // init app
@@ -29,15 +30,15 @@ app.use(fileUpload({
     limits: { fileSize: 2 * 1024 * 1024 },
     abortOnLimit: true
 }));
-
-app.use('/api/auth', authRoutes)
-app.use('/products', productRoutes)
+app.use(express.static('public'));
+app.use('/api/auth', authRoutes);
+app.use('/products', productRoutes);
+app.use('/api/orders', orderRoutes);
 
 app.get('/', (req, res) => {
-    res.send("hello home");
+    console.log('inside home');
+    res.sendFile("index.html");
 })
-
-
 
 app.use(async (req, res, next) => {
     next(createError.NotFound())
