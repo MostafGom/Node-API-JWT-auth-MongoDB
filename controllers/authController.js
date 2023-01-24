@@ -69,8 +69,11 @@ const loginPost = async (req, res, next) => {
             throw createError.Unauthorized('Username/password not valid')
         }
 
-        const accessToken = await signAccessToken(user.id);
-        const refreshToken = await signRefreshToken(user.id);
+        // const accessToken = await signAccessToken(user.id);
+        // const refreshToken = await signRefreshToken(user.id);
+
+        const [accessToken, refreshToken] = await Promise.all(
+            [signAccessToken(user.id), signRefreshToken(user.id)])
 
         res.send({
             success: 'login success',
@@ -93,8 +96,12 @@ const refreshToken = async (req, res, next) => {
 
         const userId = await verifyRefreshToken(refreshToken);
 
-        const accessToken = await signAccessToken(userId);
-        const newRefreshToken = await signRefreshToken(userId);
+        // const accessToken = await signAccessToken(userId);
+        // const newRefreshToken = await signRefreshToken(userId);
+
+        const [accessToken, newRefreshToken] = await Promise.all(
+            [signAccessToken(userId), signRefreshToken(userId)])
+
         res.json({ accessToken: accessToken, refreshToken: newRefreshToken });
 
     } catch (error) {
